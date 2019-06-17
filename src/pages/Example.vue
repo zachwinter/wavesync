@@ -1,5 +1,7 @@
 <template lang="pug">
 .example
+  .loading(:class="{ loaded }")
+    h2 ( loading, one moment please )
   .code
     h3 Hover here to see code.
     code(ref="code" v-html="code").javascript
@@ -13,6 +15,7 @@ import 'highlightjs/styles/kimbie.dark.css'
 export default {
   data () {
     return {
+      loaded: false,
       code: `
         import Visualizer from './visualizer'<br>
         import { interpolateRgb, interpolateBasis } from 'd3-interpolate'<br>
@@ -56,6 +59,9 @@ export default {
 
   mounted () {
     this.example = new Example
+    this.example.sync.state.watch('active', () => {
+      this.loaded = true
+    })
 
     hljs.highlightBlock(this.$refs.code)
   }
@@ -91,5 +97,24 @@ export default {
   &[data-show]{
     transform: translateX(0);
   }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; } 
+  to { opacity: 1 }
+}
+
+.loading {
+  @include flex;
+  @include position(fixed, 0 0 0 0);
+  background: white;
+  opacity: 1;
+  transition: opacity 500ms linear;
+
+  &.loaded { opacity: 0; }
+}
+
+h2 {
+  animation: fade-in 500ms linear;
 }
 </style>
