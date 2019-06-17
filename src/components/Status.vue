@@ -27,13 +27,7 @@ export default {
   pointer-events: none;
 
   &.visible { opacity: 1; }
-
-  &.no-playback {
-    z-index: 100;
-  }
 }
 
-h2 {
-  animation: fade-in 500ms linear;
-}
+h2 { animation: fade-in 500ms linear; }
 </style>

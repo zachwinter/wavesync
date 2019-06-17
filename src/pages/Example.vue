@@ -62,13 +62,8 @@ export default {
 
   mounted () {
     this.example = new Example
-    this.example.sync.state.watch('active', () => {
-      this.loaded = true
-    })
-    this.example.sync.state.watch('noPlayback', val => {
-      this.noPlayback = val
-    })
-
+    this.example.sync.watch('active', () => this.loaded = true)
+    this.example.sync.watch('noPlayback', val => this.noPlayback = val)
     hljs.highlightBlock(this.$refs.code)
   }
 }
@@ -83,9 +78,7 @@ export default {
   opacity: 1;
   color: white;
 
-  &[data-show]{
-    transform: translateX(0);
-  }
+  &[data-show] { transform: translateX(0); }
 }
 
 code {
@@ -101,7 +94,5 @@ h3 {
   cursor: normal;
 }
 
-h3:hover + code {
-  opacity: 1;
-}
+h3:hover + code { opacity: 1; }
 </style>

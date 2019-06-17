@@ -19,14 +19,8 @@ export default {
 
   mounted () {
     this.waveSync = new WaveSync
-
-    this.waveSync.sync.state.watch('active', () => {
-      this.loaded = true
-    })
-
-    this.waveSync.sync.state.watch('noPlayback', val => {
-      this.noPlayback = val
-    })
+    this.waveSync.sync.watch('active', () => this.loaded = true)
+    this.waveSync.sync.watch('noPlayback', val => this.noPlayback = val)
   }
 }
 </script>

@@ -37,9 +37,7 @@ export default {
   },
 
   mounted () {
-    this.wavesync = new WaveSync({
-      fixed: true
-    })
+    this.wavesync = new WaveSync({ fixed: true })
   }
 }
 </script>
@@ -87,17 +85,9 @@ export default {
 }
 
 @keyframes beat {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1)
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1) }
 }
 
 h1 {
@@ -111,25 +101,11 @@ h1 {
 }
 
 @keyframes slide-up {
-  0% {
-    transform: translateY(0px);
-  }
-
-  25% {
-    transform: translateY(50px);
-  }
-
-  50% {
-    transform: translateY(0px);
-  }
-
-  75% {
-    transform: translateY(-50px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  25% { transform: translateY(50px); }
+  50% { transform: translateY(0px); }
+  75% { transform: translateY(-50px); }
+  100% { transform: translateY(0px); }
 }
 
 h1 i {
@@ -161,9 +137,6 @@ button {
   font-family: 'Covered By Your Grace';
 
   &:hover { color: black; }
-
-  &:active {
-    transform: translateX(-50%) translateY(150px) scale(.5);
-  }
+  &:active { transform: translateX(-50%) translateY(150px) scale(.5); }
 }
 </style>
