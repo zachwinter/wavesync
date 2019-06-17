@@ -1,7 +1,7 @@
 <template lang="pug">
 .example
   .loading(:class="{ loaded }")
-    h2 ( loading, one moment please )
+    h2 loading, one moment please
   .code
     h3 Hover here to see code.
     code(ref="code" v-html="code").javascript

@@ -6,13 +6,7 @@ import { sin } from '@/util/canvas'
 export default class Example extends Visualizer {
   constructor () {
     super({ volumeSmoothing: 20 })
-    this.theme = [
-      '#18FF2A', 
-      '#7718FF', 
-      '#06C5FE', 
-      '#FF4242', 
-      '#18FF2A'
-    ]
+    this.theme = ['#18FF2A', '#7718FF', '#06C5FE', '#FF4242', '#18FF2A']
   }
 
   hooks () {

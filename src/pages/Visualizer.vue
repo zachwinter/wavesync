@@ -1,7 +1,7 @@
 <template lang="pug">
 .visualizer
   .loading(:class="{ loaded }")
-    h2 ( loading, one moment please )
+    h2 loading, one moment please
 </template>
 
 <script>
