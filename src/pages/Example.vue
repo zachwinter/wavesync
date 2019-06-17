@@ -1,6 +1,7 @@
 <template lang="pug">
 .example
   Status(:loaded="loaded" :noPlayback="noPlayback")
+  NowPlaying(:nowPlaying="nowPlaying" color="white")
   .code
     h3 Hover here to see code.
     code(ref="code" v-html="code").javascript
@@ -8,17 +9,23 @@
 
 <script>
 import Status from '@/components/Status'
+import NowPlaying from '@/components/NowPlaying'
 import Example from '@/wavesync/example'
 import hljs from 'highlightjs'
 import 'highlightjs/styles/kimbie.dark.css'
 
 export default {
-  components: { Status },
+  components: { Status, NowPlaying },
 
   data () {
     return {
       loaded: false,
       noPlayback: false,
+      nowPlaying: {
+        image: '',
+        name: '',
+        artist: ''
+      },
       code: `
         import Visualizer from './visualizer'<br>
         import { interpolateRgb, interpolateBasis } from 'd3-interpolate'<br>
@@ -64,6 +71,7 @@ export default {
     this.example = new Example
     this.example.sync.watch('active', () => this.loaded = true)
     this.example.sync.watch('noPlayback', val => this.noPlayback = val)
+    this.example.sync.watch('currentlyPlaying', val => this.nowPlaying = val)
     hljs.highlightBlock(this.$refs.code)
   }
 }
