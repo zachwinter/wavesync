@@ -28,10 +28,10 @@ export default {
 
   methods: {
     async auth () {
-      const { data } = await get('http://localhost:8001/auth')
+      const { data } = await get(`${process.env.PROJECT_ROOT}/auth`)
       this.loading = true
       this.$refs.container.addEventListener('animationend', () => {
-        window.location.href = `http://localhost:8001/login?auth_id=${data.auth_id}`
+        window.location.href = `${process.env.PROJECT_ROOT}/login?auth_id=${data.auth_id}`
       })
     }
   },

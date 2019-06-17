@@ -379,8 +379,3 @@ export default class Sync {
     return analysis
   }
 }
-
-export async function auth () {
-  const { data } = await get('http://localhost:8001/auth')
-  window.location.href = `http://localhost:8001/login?auth_id=${data.auth_id}`
-}
