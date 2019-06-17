@@ -54,6 +54,7 @@ export default class Sync {
       initialStart: 0,
       trackProgress: 0,
       active: false,
+      noPlayback: null,
       initialized: false,
       volumeSmoothing,
       volume: 0,
@@ -130,6 +131,10 @@ export default class Sync {
         if (this.state.active === true) {
           this.state.active = false
         }
+
+        if (this.state.noPlayback !== true) {
+          this.state.noPlayback = true
+        }
         return this.ping()
       }
 
@@ -196,6 +201,10 @@ export default class Sync {
 
     if (this.state.active === false) {
       this.state.active = true
+    }
+     
+    if (this.state.noPlayback === true) {
+      this.state.noPlayback = false
     }
 
     this.ping()

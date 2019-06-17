@@ -1,21 +1,24 @@
 <template lang="pug">
 .example
-  .loading(:class="{ loaded }")
-    h2 loading, one moment please
+  Status(:loaded="loaded" :noPlayback="noPlayback")
   .code
     h3 Hover here to see code.
     code(ref="code" v-html="code").javascript
 </template>
 
 <script>
+import Status from '@/components/Status'
 import Example from '@/wavesync/example'
 import hljs from 'highlightjs'
 import 'highlightjs/styles/kimbie.dark.css'
 
 export default {
+  components: { Status },
+
   data () {
     return {
       loaded: false,
+      noPlayback: false,
       code: `
         import Visualizer from './visualizer'<br>
         import { interpolateRgb, interpolateBasis } from 'd3-interpolate'<br>
@@ -62,6 +65,9 @@ export default {
     this.example.sync.state.watch('active', () => {
       this.loaded = true
     })
+    this.example.sync.state.watch('noPlayback', val => {
+      this.noPlayback = val
+    })
 
     hljs.highlightBlock(this.$refs.code)
   }
@@ -77,44 +83,25 @@ export default {
   opacity: 1;
   color: white;
 
-  code {
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 100ms linear;
-    font-size: 12px;
-  }
-
-  h3 {
-    display: inline-block;
-    padding: 20px;
-    cursor: normal;
-  }
-
-  h3:hover + code {
-    opacity: 1;
-  }
-  
   &[data-show]{
     transform: translateX(0);
   }
 }
 
-@keyframes fade-in {
-  from { opacity: 0; } 
-  to { opacity: 1 }
+code {
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 100ms linear;
+  font-size: 12px;
 }
 
-.loading {
-  @include flex;
-  @include position(fixed, 0 0 0 0);
-  background: white;
+h3 {
+  display: inline-block;
+  padding: 20px;
+  cursor: normal;
+}
+
+h3:hover + code {
   opacity: 1;
-  transition: opacity 500ms linear;
-
-  &.loaded { opacity: 0; }
-}
-
-h2 {
-  animation: fade-in 500ms linear;
 }
 </style>
