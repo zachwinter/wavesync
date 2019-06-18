@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './pages/Home'
 import Visualizer from './pages/Visualizer'
-import Example from './pages/Example'
 
 Vue.use(Router)
 
@@ -19,11 +18,6 @@ export default new Router({
       path: '/visualizer',
       name: 'about',
       component: Visualizer
-    },
-    {
-      path: '/example',
-      name: 'example',
-      component: Example
     }
   ]
 })
