@@ -4,6 +4,7 @@ const path = require('path')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const fallback = require('express-history-api-fallback')
+const compression = require('compression')
 
 const app = express()
 const root = path.resolve(__dirname, '../dist')
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(cookieParser())
+app.use(compression())
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(root))
